@@ -3,9 +3,8 @@ from textnode import TextNode
 
 
 def main():
-    text_node = TextNode("dummy", TextType("bold"), "boot.dev")
-    print(text_node)
-    return
+    node = TextNode("dummy", TextType.LINK, "boot.dev")
+    print(node)
 
 
 if __name__ == "__main__":

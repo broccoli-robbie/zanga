@@ -7,26 +7,21 @@ class TextType(Enum):
     CODE = "code"
     LINK = "link"
     IMAGE = "image"
-    PLAIN = "plain"
+    TEXT = "text"
 
 
 class TextNode:
-    def __init__(self, text, text_type, url):
+    def __init__(self, text, text_type, url=None):
         self.text = text
-        self.text_type = TextType(text_type)
-
-        if url is None:
-            self.url = None
+        self.text_type = text_type
         self.url = url
 
     def __eq__(self, other):
-        if (
-            (other.text == self.text)
-            & (other.text_type == self.text_type)
-            & (other.url == self.url)
-        ):
-            return True
-        return False
+        return (
+            other.text == self.text
+            and other.text_type == self.text_type
+            and other.url == self.url
+        )
 
     def __repr__(self):
         return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
