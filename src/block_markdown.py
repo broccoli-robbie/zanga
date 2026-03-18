@@ -2,7 +2,7 @@ import re
 
 from enum import Enum
 
-from htmlnode import ParentNode
+from htmlnode import ParentNode, LeafNode
 from inline_markdown import text_to_textnodes
 from textnode import text_node_to_html_node
 
@@ -68,11 +68,13 @@ def block_to_html_node(block):
     raise ValueError("invalid block type")
 
 
+# Helper Functions
 def text_to_children(text):
     textnodes = text_to_textnodes(text)
     new_nodes = []
     for node in textnodes:
-        new_nodes.append(text_node_to_html_node(node))
+        html_node = text_node_to_html_node(node)
+        new_nodes.append(html_node)
     return new_nodes
 
 
@@ -95,8 +97,8 @@ def code_to_html_node(block):
         raise ValueError("invalid code block")
     text = block.removeprefix("```\n")
     child = text.removesuffix("```")
-    code = [ParentNode("code", child)]
-    return ParentNode("pre", code)
+    code = ParentNode("code", [LeafNode(None, child)])
+    return ParentNode("pre", [code])
 
 
 def quote_to_html_node(block):
