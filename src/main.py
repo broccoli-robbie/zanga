@@ -1,5 +1,5 @@
 from copystatic import copy_directory
-from generate import generate_page
+from gencontent import generate_page
 
 
 def main():
