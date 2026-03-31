@@ -1,1 +1,1 @@
-python3 src/main.py "zanga"
+python3 src/main.py "broccoli-robbie/zanga"
